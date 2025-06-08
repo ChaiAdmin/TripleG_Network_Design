@@ -15,18 +15,326 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!--####  styles  ######-->
-    <link rel="stylesheet" href="styles.css">
+<style>
+    body {
+        font-family: 'Sarabun', sans-serif;
+        line-height: 1.6;
+        padding-top: 70px; /* Added to prevent content from being hidden behind fixed navbar */
+    }
+
+    /* --- Navbar Styles --- */
+/* =============================================== */
+/* ==== CSS สำหรับ NAVBAR (สีเดียวตลอดเวลา) ==== */
+/* =============================================== */
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.98) !important; /* << พื้นหลังสีขาว/อ่อน ตลอดเวลา */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* << เงา ตลอดเวลา */
+    transition: padding 0.3s ease; /* อาจจะไม่ต้องมี transition background-color แล้ว */
+    padding-top: 10px; /* หรือ 8px ตามที่คุณชอบ */
+    padding-bottom: 10px; /* หรือ 8px ตามที่คุณชอบ */
+    z-index: 1030;
+}
+
+.navbar .navbar-brand {
+    color: #667eea !important; /* << สี Brand ของคุณ ตลอดเวลา */
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #333333 !important; /* << ตัวหนังสือสีเข้ม ตลอดเวลา */
+}
+.navbar .navbar-nav .nav-link:hover {
+    color: #667eea !important; /* << สี Brand เมื่อ hover ตลอดเวลา */
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1) !important; /* << ขอบ Toggler สีเข้ม ตลอดเวลา */
+}
+
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; /* << Toggler icon สีเข้ม ตลอดเวลา */
+}
+
+.navbar .nav-item .btn-primary { /* ปุ่ม "ปรึกษาฟรี" */
+    background: linear-gradient(45deg, #667eea, #764ba2) !important; /* << สไตล์ปุ่ม ตลอดเวลา */
+    color: #ffffff !important;
+    border: none !important;
+}
+.navbar .nav-item .btn-primary:hover {
+    background: linear-gradient(45deg, #5a6fd7, #6a3fa0) !important;
+}
+
+
+/* --- CSS สำหรับเมนู COLLAPSED (Mobile) --- */
+/* ส่วนนี้ยังคงเหมือนเดิม เพราะมันทำงานเมื่อเมนูยุบลง ไม่เกี่ยวกับ scroll */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .navbar-collapse .navbar-nav .nav-link {
+         color: #333333 !important;
+    }
+    .navbar-collapse .navbar-nav .nav-link:hover {
+         color: #667eea !important;
+    }
+    .navbar-collapse .nav-item .btn-primary {
+        background: linear-gradient(45deg, #667eea, #764ba2) !important;
+        color: white !important;
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+/* =============================================== */
+/* =============================================== */
+
+
+    /* --- Hero Section Styles --- */
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 120px 0 100px; /* Adjusted padding */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.05"><polygon points="0,0 1000,0 1000,60 0,100"/></svg>'); /* Reduced opacity */
+        background-size: cover;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-section .display-4 { /* Ensure hero title is very prominent */
+        font-size: calc(1.525rem + 3.3vw); /* Responsive font size */
+        line-height: 1.2;
+    }
+    @media (min-width: 1200px) {
+        .hero-section .display-4 {
+            font-size: 4.5rem; /* Max font size on large screens */
+        }
+    }
+
+    /* Hero section buttons for contrast */
+    .hero-section .btn-cta-primary { /* New class for hero primary button */
+        background: #ffd700; /* Gold */
+        color: #333333; /* Dark text */
+        border-color: #ffd700;
+        padding: 15px 35px; /* Larger padding */
+        font-weight: 600;
+    }
+    .hero-section .btn-cta-primary:hover {
+        background: #e6c300; /* Darker gold */
+        border-color: #dbae00;
+        color: #333333;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .hero-section .btn-outline-light {
+        padding: 15px 35px; /* Larger padding for consistency */
+        font-weight: 600;
+        border-width: 2px;
+    }
+    .hero-section .btn-outline-light:hover {
+        background-color: rgba(255,255,255,0.15);
+    }
+    /* End Hero Section Buttons */
+
+
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        height: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .service-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        height: 100%;
+    }
+
+    .service-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-icon {
+        font-size: 4rem;
+        color: #667eea;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary { /* Global primary button - Navbar scrolled state will override this for itself */
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        color: white; /* Ensure text is white by default */
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        background: linear-gradient(45deg, #5a6fd7, #6a3fa0); /* Slightly darker on hover */
+    }
+
+    .section-title {
+        position: relative;
+        margin-bottom: 50px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 2px;
+    }
+
+    .contact-form {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 40px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .contact-item i {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        width: 30px;
+    }
+
+    .footer {
+        background: #2c3e50;
+        color: white;
+        padding: 50px 0 20px;
+    }
+
+    .stats-section {
+        background: #f8f9fa;
+        padding: 80px 0;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #667eea;
+        display: block;
+    }
+
+    .stat-label {
+        color: #666;
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 991.98px) { /* Adjust breakpoint for navbar collapse actions */
+        .navbar-collapse {
+            background-color: rgba(255, 255, 255, 0.98); /* Ensure collapsed menu has a background */
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .navbar .navbar-nav .nav-link { /* Ensure links are dark in collapsed menu */
+             color: #333 !important;
+        }
+        .navbar .navbar-nav .nav-link:hover {
+             color: #667eea !important;
+        }
+        .navbar .nav-item .btn-primary { /* ปรึกษาฟรี button in collapsed menu */
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white !important;
+            border: none;
+        }
+        .navbar .nav-item .btn-primary:hover {
+            background: linear-gradient(45deg, #5a6fd7, #6a3fa0);
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 80px 0 60px; /* Adjusted padding for mobile */
+            text-align: center; /* Center hero content on smaller screens */
+        }
+        .hero-content .d-flex {
+            justify-content: center; /* Center buttons */
+        }
+        .service-card {
+            margin-bottom: 20px;
+        }
+    }
+</style>
 
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-transparent">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3" href="#" style="color: #667eea;">
-                <i class="fas fa-rocket me-2"></i>MyBusiness
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                <i class="fas fa-rocket me-2"></i>Triple G
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -47,7 +355,7 @@
                     <li class="nav-item">
                         <a class="nav-link fw-500" href="#contact">ติดต่อ</a>
                     </li>
-                    <li class="nav-item ms-2">
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                         <a class="btn btn-primary" href="#contact">ปรึกษาฟรี</a>
                     </li>
                 </ul>
@@ -69,7 +377,7 @@
                         เพื่อขยายธุรกิจสู่โลกดิจิทัล
                     </p>
                     <div class="d-flex gap-3 flex-wrap">
-                        <a href="#contact" class="btn btn-primary btn-lg">
+                        <a href="#contact" class="btn btn-cta-primary btn-lg">
                             <i class="fas fa-paper-plane me-2"></i>เริ่มต้นเลย
                         </a>
                         <a href="#about" class="btn btn-outline-light btn-lg">
@@ -77,16 +385,16 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 text-center">
+                <div class="col-lg-6 text-center d-none d-lg-block">
                     <div class="hero-image mt-5 mt-lg-0">
-                        <i class="fas fa-laptop-code" style="font-size: 15rem; opacity: 0.8;"></i>
+                        <i class="fas fa-laptop-code" style="font-size: 15rem; opacity: 0.7;"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats Section (เนื้อหาส่วนที่เหลือเหมือนเดิม) -->
     <section class="stats-section">
         <div class="container">
             <div class="row">
@@ -468,7 +776,7 @@
             <hr class="my-4">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2024 MyBusiness. All rights reserved. | Designed with ❤️ in Thailand</p>
+                    <p class="mb-0">© 2024 MyBusiness. All rights reserved. | Designed with ❤️ in Thailand</p>
                 </div>
             </div>
         </div>
@@ -478,7 +786,108 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     
     <!--#### script #####-->
-    <script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        const navbarHeight = navbar.offsetHeight; // Get navbar height for padding-top
+
+        // Add padding-top to body to prevent content from being hidden by fixed navbar
+        // document.body.style.paddingTop = navbarHeight + 'px'; // Moved to CSS for initial load
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate scroll position considering the fixed navbar height
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Hide navbar collapse menu on item click
+        const navLinksAndButtons = document.querySelectorAll('#navbarNav .nav-link, #navbarNav .btn-primary');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const bsCollapse = new bootstrap.Collapse(document.getElementById('navbarNav'), {
+            toggle: false // Initialize but don't toggle
+        });
+
+        navLinksAndButtons.forEach(item => {
+            item.addEventListener('click', () => {
+                // Check if the navbar toggler button is visible (i.e., we are in a collapsed state on mobile/tablet)
+                // and if the collapse menu is currently shown
+                if (getComputedStyle(navbarToggler).display !== 'none' && navbarToggler.getAttribute('aria-expanded') === 'true') {
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('ขอบคุณสำหรับข้อความของคุณ! เราจะติดต่อกลับโดยเร็วที่สุด');
+                this.reset(); // Optionally reset the form
+            });
+        }
+
+        // Animation on scroll (simplified for less jumpiness on initial load)
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .service-card, .stat-item');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                // Animate when element is a bit into the viewport
+                if (elementTop < windowHeight - 100) { 
+                    element.classList.add('is-visible');
+                }
+            });
+        }
+
+        // Initialize animation styles and add a class for visibility
+        document.querySelectorAll('.feature-card, .service-card, .stat-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        });
+        
+        // Add .is-visible class for elements that are already in view on load
+        animateOnScroll(); 
+        // Listen for scroll events
+        window.addEventListener('scroll', animateOnScroll);
+    });
+
+    // Add CSS for the .is-visible class
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+</script>
     
 </body>
 </html>

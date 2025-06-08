@@ -1,6 +1,5 @@
 
     // <!-- Custom JavaScript -->
-    <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -58,4 +57,3 @@
         
         // Initial check
         animateOnScroll();
-    </script>
